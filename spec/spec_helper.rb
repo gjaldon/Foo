@@ -1,11 +1,16 @@
 ENV["REDIS_URL"]  ||= "redis://localhost:6379/13"
 
-require File.expand_path("../app", File.dirname(__FILE__))
+require_relative '../app'
 require 'minitest/spec'
 require 'minitest/autorun'
-require 'rack/test'
+require 'capybara/dsl'
 require 'turn'
+require 'pry'
 
 Ohm.flush
 
-Turn.config.format = :outline
+class AcceptanceTest < MiniTest::Spec
+	include Capybara::DSL
+end
+
+Capybara.app = Cuba
