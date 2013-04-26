@@ -1,21 +1,15 @@
-require "cuba"
-require "mote"
-require "cuba/contrib"
-require "rack/protection"
-require "shield"
-require "ohm"
-require "securerandom"
+require 'rubygems'
+require 'bundler'
+
+Bundler.require
+
+require_relative 'config/settings'
 
 Cuba.plugin Cuba::Mote
 Cuba.plugin Cuba::TextHelpers
 Cuba.plugin Shield::Helpers
 
-# Require all application files.
-Dir["./models/**/*.rb"].each  { |rb| require rb }
-Dir["./routes/**/*.rb"].each  { |rb| require rb }
-
-# Require all helper files.
-Dir["./lib/**/*.rb"].each { |rb| require rb }
+Dir["./{lib,models,routes}/**/*.rb"].each  { |rb| require rb }
 
 Cuba.use Rack::MethodOverride
 Cuba.use Rack::Session::Cookie,
@@ -29,14 +23,18 @@ Cuba.use Rack::Static,
   urls: %w[/js /css /img],
   root: "./public"
 
+Ohm.connect(url: Settings::REDIS_URL)
+
+Cuba.plugin Helpers
+
 Cuba.define do
 	persist_session!
 
-  on root do
-    render("home")
+  on authenticated(User) do
+    run Users
   end
 
   on default do
-  	run Users
+  	run Guests
   end
 end
