@@ -1,0 +1,19 @@
+<form action="/" method="post">
+  <label for="email">Email</label>
+  <input type="text" name="email" id="email" value="{{email}}">
+
+  <label for="password">
+    Password
+    <a href="#">(forgot password?)</a>
+  </label>
+  <input type="password" name="password" id="password" value="">
+
+  <label>
+    <input type="checkbox" name="remember" value="1" >
+    Remember me
+  </label>
+
+  <button class="btn" type="submit" name="submit">Login</button>
+</form>
+
+<p>No account yet? <a href="/register">Register</a><p>

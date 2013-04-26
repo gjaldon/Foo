@@ -1,12 +1,11 @@
 class Users < Cuba
-
 	define do
 
-	  on get do
-	  	on "users" do
-	  		user = User.create(name: 'Andoni', email: 'gjaldon@test.com')
-	    	render("form", user: user)
+	  on 'dashboard' do
+	  	on get do
+	    	render("users/dashboard", user: current_user)
 	    end
 	  end
+
 	end
 end

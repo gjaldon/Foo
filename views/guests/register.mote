@@ -1,0 +1,12 @@
+<form action="/register" method="post">
+  <label for="user_name">Full Name</label>
+  <input type="text" name="user[name]" id="user_name" value="">
+
+  <label for="user_email">Email</label>
+  <input type="text" name="user[email]" id="user_email" value="">
+
+  <label for="user_password">Password</label>
+  <input type="password" name="user[password]" id="user_password" value="">
+
+  <button class="btn" type="submit" name="submit">Register</button>
+</form>

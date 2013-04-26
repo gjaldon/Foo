@@ -1,0 +1,8 @@
+% [:success, :error].each do |type|
+  % if session[type]
+    <div class="alert alert-{{type}}">
+      <a class="close" data-dismiss="alert">×</a>
+      {{ session.delete(type) }}
+    </div>
+  % end
+% end
