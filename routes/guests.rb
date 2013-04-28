@@ -2,30 +2,31 @@ class Guests < Cuba
   define do
 
     on root do
+      email = current_user ? current_user.email : ''
+
       on get do
-        email = current_user ? current_user.email : ''
-        render("guests/login", email: email)
+        render "guests/login", email: email
       end
 
       on post, param("email"), param("password") do |email, pass|
         if login(User, email, pass, req[:remember])
-          session[:success] = "Signed in!"
-          res.redirect "/"
+          session[:success] = 'Signed in!'
+          render "guests/login", session: session, email: email
         else
           session[:error] = "Incorrect email or password!"
-          res.write("Failed!")
+          render "guests/login", session: session, email: email
         end
       end
 
       on default do
         session[:error] = "No username and/or password supplied"
-        res.redirect "/login", 303
+        render "guests/login", session: session, email: email
       end
     end
 
     on "register" do
       on get do
-        render("register")
+        render "guests/register"
       end
 
       on post, param("user") do |params|

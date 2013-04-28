@@ -3,7 +3,7 @@ class Users < Cuba
 
 	  on 'dashboard' do
 	  	on get do
-	    	render("users/dashboard", user: current_user)
+	    	render("users/dashboard")
 	    end
 	  end
 

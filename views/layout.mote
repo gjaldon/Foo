@@ -29,6 +29,7 @@
     </header>
 
     <section>
+      {{this.partial 'notices', session: this.session}}
       {{content}}
     </section>
   </body>
