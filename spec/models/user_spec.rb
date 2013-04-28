@@ -1,4 +1,4 @@
-require_relative '../spec_helper'
+require_relative '../model_spec_helper'
 
 describe User do
 	let(:user) { User.create name: 'Test', email: 'test@jaldon.com', crypted_password: 'secret' }
