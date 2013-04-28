@@ -1,8 +1,12 @@
-require 'rubygems'
-require 'bundler'
+require_relative './bundle/bundler/setup.rb'
 
-Bundler.require
-
+require 'cuba'
+require 'cuba/contrib'
+require 'mote'
+require 'ohm'
+require 'shield'
+require 'rack/protection'
+require 'pry'
 require_relative 'config/settings'
 
 Cuba.plugin Cuba::Mote
