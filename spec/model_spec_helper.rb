@@ -1,20 +1,16 @@
 ENV["REDIS_URL"]  ||= "redis://localhost:6379/13"
 
-require_relative '../app'
-require 'capybara/dsl'
+module Shield
+  module Model
+  end
+end
+
+require 'ohm'
 require 'minitest/spec'
 require 'minitest/autorun'
 require 'turn'
-require 'pry'
+Dir["./models/**/*.rb"].each  { |rb| require rb }
 
 Turn.config.format = :dot
 
 Ohm.flush
-
-module MiniTest
-  class Spec
-    include Capybara::DSL
-  end
-end
-
-Capybara.app = Cuba
